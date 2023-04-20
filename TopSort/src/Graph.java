@@ -21,4 +21,10 @@ public interface Graph {
 
     boolean hasEdge(int origin,
                     int destination);
+
+    /**
+     * @return a vertex with in-degree zero, if exists;
+     *         null, otherwise.
+     */
+    Integer getSourceVertex();
 }

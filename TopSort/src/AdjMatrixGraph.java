@@ -26,15 +26,7 @@ public class AdjMatrixGraph implements Graph {
 
     @Override
     public int getVertexCount() {
-        return getVertexCount(false);
-    }
-
-    public int getVertexCount(boolean includeRemoved) {
-        int result = n;
-        if (!includeRemoved) {
-            result -= removedVertices.size();
-        }
-        return result;
+        return n - removedVertices.size();
     }
 
     @Override
@@ -88,5 +80,16 @@ public class AdjMatrixGraph implements Graph {
             return false;
         }
         return adjMatrix[origin][destination];
+    }
+
+    @Override
+    public Integer getSourceVertex() {
+        for (int v = 0; v < n; v++) {
+            if (hasVertex(v) &&
+                    getVertexInDegree(v) == 0) {
+                return v;
+            }
+        }
+        return null;
     }
 }

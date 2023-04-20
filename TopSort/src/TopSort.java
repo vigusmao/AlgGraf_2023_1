@@ -10,14 +10,13 @@ public class TopSort {
      * @return A topsort, if one exists;
      *         null, otherwise
      */
-    public static List<Integer> obtainTopSort(
-            AdjMatrixGraph graph) {
+    public static List<Integer> obtainTopSort(Graph graph) {
 
         int n = graph.getVertexCount();
         List<Integer> topSort = new ArrayList<>();
 
         while (topSort.size() < n) {
-            Integer source = findSource(graph);
+            Integer source = graph.getSourceVertex();
 
             if (source == null) {
                 return null;
@@ -28,17 +27,5 @@ public class TopSort {
         }
 
         return topSort;
-    }
-
-    private static Integer findSource(AdjMatrixGraph graph) {
-
-        for (int v = 0; v < graph.getVertexCount(true); v++) {
-            if (graph.hasVertex(v) &&
-                    graph.getVertexInDegree(v) == 0) {
-                return v;
-            }
-        }
-
-        return null;
     }
 }
